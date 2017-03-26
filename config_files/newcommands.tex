@@ -1,0 +1,181 @@
+\newcommand*{\QED}{\ensuremath{\blacksquare}}
+\newcommand{\union}{\cup}
+\newcommand{\intersection}{\cap}
+\newcommand{\overeq}[1]{\stackrel{\mathclap{\tiny{\substack{#1}}}}{=}}
+\newcommand{\overto}[1]{\stackrel{\mathclap{\tiny{\substack{#1}}}}{\to}}
+\newcommand{\linA}{\mathcal{A}}
+\newcommand{\linB}{\mathcal{B}}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\wpw}{\omega_{\text{pw}}}
+\newcommand{\linC}{\mathcal{C}}
+\newcommand{\SI}{S_{\text{I}}}
+\newcommand{\TI}{T_{\text{I}}}
+\newcommand{\SO}{S_{\text{O}}}
+\newcommand{\TO}{T_{\text{O}}}
+\newcommand{\LI}{L_{\text{I}}}
+\newcommand{\LO}{L_{\text{O}}}
+\newcommand{\Hinf}{\mathcal{H}_\infty}
+\newcommand{\Htwo}{\mathcal{H}_2}
+\newcommand{\perpoplus}{\overset{\perp}{\oplus}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\GM}{\text{GM}}
+\newcommand{\PM}{\text{PM}}
+\newcommand{\TV}{\text{TV}}
+\newcommand{\fnorm}[2]{\left\|#1\right\|_{#2}}
+\newcommand{\Property}[1]{
+	\begin{properties}
+		\item[\textit{Property #1}.]
+	\end{properties}
+}
+\def\AR{\text{\itshape\clipbox{0pt 0pt .32em 0pt}\AE\kern-.30emR}}
+\newcommand{\skewmat}[1]{\bm{#1}^{\times}}
+\newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\basis}[3]{\{#1_{#2}\}_{#2=1}^{#3}}
+\newcommand{\sequence}[3]{\{#1_{#2}\}_{#2=0}^{#3}}
+\newcommand{\Naturals}{\mathbb N}
+\newcommand{\Reals}{\mathbb R}
+\newcommand{\Complex}{\mathbb C}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\Rank}{\text{rank}}
+\newcommand{\Range}{\text{range}}
+\newcommand{\Nullity}{\text{nullity}}
+\newcommand{\Ker}{\text{ker}}
+\newcommand{\Null}{\text{null}}
+\newcommand{\Det}{\text{det}}
+\newcommand{\Spec}{\text{spec}}
+\newcommand{\DIM}{\text{dim}}
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand{\InnerProd}[2]{\langle#1,#2\rangle}
+\newcommand{\scaleval}{0.8}
+\newcommand{\Expectation}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\Variance}[1]{\text{Var}[#1]}
+\newcommand{\Cov}[2]{\text{Cov}[#1,#2]}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\ord}[1]{^{\left(#1\right)}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\mc}[2]{{\color{#1}#2}}
+\definecolor{mygrey}{RGB}{51, 51, 51}
+
+%%%%%%%%%% Drawings
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0pt,minimum size=0em] (char) {#1};}}
+
+\newcommand*\circledsmall[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0pt,minimum size=1em] (char) {#1};}}
+
+\newcommand*\circledcolor[2]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0pt,minimum size=1.3em,fill=#2] (char) {#1};}}
+
+\newcommand*\squaredcolor[2]{\tikz[baseline=(char.base)]{\node[shape=rectangle,draw,inner sep=0.5pt,minimum size=0.1em,fill=#2] (char) {#1};}}
+
+\newcommand*\squaredcolornobord[2]{\tikz[baseline=(char.base)]{\node[shape=rectangle,inner sep=0.5pt,minimum size=0.1em,fill=#2] (char) {#1};}}
+
+\newcommand*\squaredcolornobordsetsep[3]{\tikz[baseline=(char.base)]{\node[shape=rectangle,inner sep=#3,minimum size=0.1em,fill=#2] (char) {#1};}}
+
+\newcommand\dangersign[1][1.5em]{%
+  \renewcommand\stacktype{L}%
+  \scaleto{\stackon[0.7pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
+}
+
+%%%%%%%%%% Big commands
+\newcommand{\distribdiscript}[6]{
+\noindent\rule[0ex]{\linewidth}{0.5pt}
+\flushleft{\textbf{#1 ($X\sim #2$)}} % Name (#1) and notation (#2)
+\vspace{-2mm}
+\noindent\rule[1.5ex]{\linewidth}{0.5pt}
+#3 % Description of distribution
+\begin{tabularx}{1\columnwidth}{X|X}
+\hline
+#4 % PMF/PDF/CDF go here
+&
+Properties:
+#5 % Properties of distribution go here
+\\ \hline
+\end{tabularx}
+\myfigure{
+\includegraphics[width=0.9\columnwidth]{#6.pdf} % Filename of the distribution grpahic goes here
+}
+}
+
+\newcommand{\newfigure}[4]{
+\begin{figure}[H]
+\centerline{\includegraphics[width=#1\columnwidth]{figures/#2}}
+\caption{#3}
+\label{#4}
+\end{figure}
+}
+
+\newcommand{\newfigureNocaption}[2]{
+\begin{center}
+\includegraphics[width=#1\columnwidth]{figures/#2}
+\end{center}
+}
+
+\newcommand{\nextchapter}[1]{
+\begin{Chapter}
+	\section{#1}%\section{}
+\end{Chapter}
+}
+
+\newcommand{\nextchapterhidden}[1]{
+\begin{Chapter}
+	\section*{#1}
+\end{Chapter}
+}
+
+\newcommand{\nextsubchapter}[1]{
+\begin{Subchapter}
+	\subsection{#1}
+\end{Subchapter}
+}
+
+\newcommand{\nextappendix}[1]{
+\begin{Appendix}
+	\section{\normalfont{\textit{#1}}}
+\end{Appendix}
+}
+
+\newcommand{\myfigure}[1]{
+\vspace{-4mm}
+\begin{figure}[H]
+\centering
+#1
+\end{figure}
+\vspace{-4mm}
+}
+
+\newcommand{\separator}{
+\begin{center}
+\vspace{-3.5mm}
+\noindent\rule{1\columnwidth}{0.3pt}
+\vspace{-3.5mm}
+\end{center}
+}
+
+\newcommand{\separatorfat}{
+\begin{center}
+\vspace{-1.5mm}
+\noindent\rule{1\columnwidth}{0.4pt}
+\vspace{-2.5mm}
+\end{center}
+}
+
+\newcommand{\StateSpace}[4]{
+\left[
+\begin{array}{c|c}
+#1 & #2 \\ \hline
+#3 & #4
+\end{array}
+\right]
+}
+
+\newcommand{\expm}[1]{\mathrm{e}^{#1}}
+
+\newcommand{\smalltitle}[1]{
+\begin{tabularx}{\columnwidth}{|X|}
+	\hline
+	\textbf{#1} \\
+	\hline
+\end{tabularx}	
+}

@@ -1,0 +1,61 @@
+\hfuzz=400pt
+\vfuzz=400pt
+
+% Turn on the style
+\pagestyle{fancy}
+% Clear the header and footer
+\fancyhead{}
+\fancyfoot{}
+% Set the right side of the footer to be the page number
+\fancyfoot[R]{\circled{\thepage}}
+
+\setlist{nosep}
+
+\setcounter{secnumdepth}{0} % sections are level 1
+\titleformat*{\section}{\bfseries}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titleformat*{\subsection}{\bfseries}
+\titlespacing*{\subsection}{0pt}{-1pt}{-1pt}
+
+\makeatletter
+\preto{\@verbatim}{\topsep=0pt \partopsep=0pt }
+\makeatother
+
+\makeatletter
+\renewcommand{\@cftmaketoctitle}{}
+\makeatother
+
+\renewcommand\cftsecfont{\bfseries}
+\renewcommand\cftsecpagefont{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\setlength\cftbeforesecskip{2pt}
+
+\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{5pt}
+\setlength{\belowcaptionskip}{-10pt}
+\setlength{\abovecaptionskip}{0pt}
+
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{0pt}
+  \setlength\belowdisplayskip{0pt}
+  \setlength\abovedisplayshortskip{0pt}
+  \setlength\belowdisplayshortskip{0pt}
+}
+\makeatother
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{mygreen}{RGB}{0,128,0}
+\definecolor{myorange}{RGB}{255,150,0}
+\definecolor{beige}{RGB}{255,153,85}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\baselinestretch}{1}
