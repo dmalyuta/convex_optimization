@@ -3,14 +3,15 @@
 
 \nextsubchapter{Definition of an optimization problem}
 
+\begin{Definition}
 An \textit{optimization problem} has the form
 
-\begin{equation*}
+\begin{equation}\label{eq:optimization_problem}
 	\begin{array}{rl}
 	\text{minimize} & f_0(x) \\
 	\text{subject to} & f_i(x)\le b_i,\quad i=1,\ldots,m
 	\end{array}
-\end{equation*}
+\end{equation}
 
 where:
 
@@ -21,11 +22,23 @@ where:
 	\item $b_1,...,b_m$ are the limits (bounds) for the constraints.
 \end{itemize}
 
+\end{Definition}
+
+\begin{Fact}
+You can understand (\ref{eq:optimization_problem}) as an abstraction of choosing a vector in $\Reals^n$ from a set of candidate choices. In this case, constraints $f_i(x)\le bi$ are ``requirements'' or ``specifications'' while $f_0(x)$ is the cost of choosing $x$.
+
+\begin{itemize}
+\item If $f_0(x)$ is the cost, then $-f_0(x)$ is then the ``utility''
+\end{itemize}
+\end{Fact}
+
+\begin{Definition}
 A vector $x^*$ is \textit{optimal} or is a \textit{solution} if
 
 \begin{equation*}
 	\forall z\in\mathbb R^n\text{ satisfying the constraints,}\quad f_0(x^*)\le f_0(z).
 \end{equation*}
+\end{Definition}
 
 \nextsubchapter{Classes of optimization problems}
 
@@ -37,11 +50,14 @@ Optimization problems are bundled into classes based on the form of their object
 
 \smalltitle{Linear program}
 
-$f_0,...,f_m$ are linear functions (i.e. both objective and constraints). Recall:
+A linear program is (\ref{eq:optimization_problem}) where $f_0,...,f_m$ are linear functions. Recall:
 
-$$
-f(x):\mathbb R^n\to\mathbb R\text{ is linear}\Leftrightarrow \forall x,y\in\mathbb R^n,\,\,\forall\alpha\in\mathbb \,\,\, f(\alpha x+\beta y)=\alpha f(x)+\beta f(y).
-$$
+\begin{Definition}
+Function $f(x):\Reals^n\to\Reals$ is linear $\Leftrightarrow$
+\begin{equation*}
+\forall x,y\in\mathbb R^n,\,\,\forall\alpha\in\Reals,\quad f(\alpha x+\beta y)=\alpha f(x)+\beta f(y)
+\end{equation*}
+\end{Definition}
 
 \smalltitle{Nonlinear program}
 
