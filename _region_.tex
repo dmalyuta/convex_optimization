@@ -1,3 +1,14 @@
+\message{ !name(document.tex)}\documentclass[twocolumn]{article}
+
+\input{config_files/master_preamble.tex}
+\input{config_files/page_style.tex}
+\input{config_files/tikz_styles.tex}
+\input{config_files/boxes.tex}
+\input{config_files/newcommands.tex}
+
+\begin{document}
+
+\message{ !name(chapter1.tex) !offset(-11) }
 
 \nextchapter{Introduction to Optimizations}
 
@@ -5,12 +16,12 @@
 
 A \textit{mathematical optimization problem} has the form
 
-\begin{equation}\label{eq:opt_problem}
+\begin{equation*}\label{eq:opt_problem}
   \begin{array}{rl}
     \text{minimize} & f_0(x) \\
     \text{subject to} & f_i(x)\le b_i,\quad i=1,\ldots,m
   \end{array}
-\end{equation}
+\end{equation*}
 
 where:
 
@@ -38,15 +49,14 @@ Optimization problems are bundled into classes based on the form of their object
 \smalltitle{Linear program}
 
 \begin{Definition}
-  (\ref{eq:opt_problem}) is a \textbf{linear program} if $f_0,...,f_m$ are linear functions (i.e. both objective and constraints).
+  \ref{eq:opt_problem} is a  
 \end{Definition}
 
-\begin{Definition}
-  Recall that:
-  $$
-  f(x):\mathbb R^n\to\mathbb R\text{ is linear}\Leftrightarrow \forall x,y\in\mathbb R^n,\,\,\forall\alpha\in\mathbb \,\,\, f(\alpha x+\beta y)=\alpha f(x)+\beta f(y).
-  $$
-\end{Definition}
+$f_0,...,f_m$ are linear functions (i.e. both objective and constraints).
+
+$$
+f(x):\mathbb R^n\to\mathbb R\text{ is linear}\Leftrightarrow \forall x,y\in\mathbb R^n,\,\,\forall\alpha\in\mathbb \,\,\, f(\alpha x+\beta y)=\alpha f(x)+\beta f(y).
+$$
 
 \smalltitle{Nonlinear program}
 
@@ -73,16 +83,15 @@ Unlike general nonlinear programs, convex (and linear) programs can be solved \t
 
 In fact, a convex program is a common parent of two well know, reliable and efficient optimization classes: least squares and linear programs.
 
-\smalltitle{Least-Squares Problems}
+\smalltitle{Least-Squared Problems}
 
 \begin{Definition}
-  A \textbf{least-squares problem} is an optimization problem with no constraints and an objective function which is affine in the optimization variable $x$. Let $A\in\Reals^{k\times n}$ (with $k\ge n$) and $a_i^T$ be its rows. Then the optimization problem is:
   \begin{equation*}
-    \text{minimize} f_0(x) = \fnorm{Ax-b}{2}^2 = \sum_{i=1}^k (a_i^Tx-b_i)^2
+    \text{minimize}\,\, \fnorm{Ax-b}{2}^2
   \end{equation*}
 \end{Definition}
 
-Least-squares programming is a \textit{mature technology}: least-squares problems can be solved efficiently and reliably. Many software packages exist that do this.
+Least-squares programming is a \textit{mature technology}: least-squares problems can be solved efficiently and reliably. Many software packages exist to do this.
 
 \begin{Fact}
   Least-squares properties:
@@ -92,9 +101,6 @@ Least-squares programming is a \textit{mature technology}: least-squares problem
     \item NB: good solvers don't do literally this operation, though!
     \end{itemize}
   \item Compute time $\propto n^2k$.
-    \begin{itemize}
-    \item Where $n$ is ``\textit{small}'' while $k$ is ``\textit{large}''. Just remember this: computation time is ``small squared times large''.
-    \end{itemize}
   \end{itemize}
 \end{Fact}
 
@@ -107,34 +113,6 @@ How to know if your problem is a least-squares problem? \textbf{Simple, just one
   \item A: No: it's not a least squares problem!
   \end{itemize}
 \end{itemize}
-
-Applications to least-squares programming include:
-
-\begin{itemize}
-\item Regression analysis
-\item Parameter estimation
-\item Data fitting methods
-\item Optimal control
-\end{itemize}
-
-\begin{Fact}
-  A variation of standard least squares is \textit{weighted least squares} with weights $w_i\ge 0$ $\forall i$ reflecting the relative concern for term $a_i^Tx-b_i$ being large:
-  \begin{equation*}
-    \text{minimize}\sum_{i=1}^kw_i(a_i^Tx-b_i)^2
-  \end{equation*}
-\end{Fact}
-
-\begin{Fact}
-  Another technique in least squares is \textit{regularization} which adds extra terms for the cost function, e.g.
-  \begin{equation*}
-    f_0(x) = \sum_{i=1}^k(a_i^Tx-b_i)^2+\rho\sum_{i=1}^k x_i^2
-  \end{equation*}
-  where $f_0(x)$ can still be formulated as a least squares problem. The extra terms penalize large values of $x$ and result in a sensible solution in cases where minimizing the first sum only does not. Parameter $\rho\in[0,1]$ trades off between meeting the original objective ($\rho=0$) and keeping $x_i^2$ small ($\rho=1$).
-
-  \begin{Example}
-    Regularization is used in statistical estimation when $x$ is given a prior distribution.
-  \end{Example}
-\end{Fact}
 
 \smalltitle{Linear Programming}
 
@@ -173,3 +151,7 @@ Linear programming is, like least squares, a mature technology. Existing algorit
 %%% mode: latex
 %%% TeX-master: "document"
 %%% End:
+
+\message{ !name(document.tex) !offset(-128) }
+
+\end{document}
