@@ -21,11 +21,23 @@ where:
 \item $b_1,...,b_m$ are the limits (bounds) for the constraints.
 \end{itemize}
 
+\end{Definition}
+
+\begin{Fact}
+You can understand (\ref{eq:optimization_problem}) as an abstraction of choosing a vector in $\Reals^n$ from a set of candidate choices. In this case, constraints $f_i(x)\le bi$ are ``requirements'' or ``specifications'' while $f_0(x)$ is the cost of choosing $x$.
+
+\begin{itemize}
+\item If $f_0(x)$ is the cost, then $-f_0(x)$ is then the ``utility''
+\end{itemize}
+\end{Fact}
+
+\begin{Definition}
 A vector $x^*$ is \textit{optimal} or is a \textit{solution} if
 
 \begin{equation*}
   \forall z\in\mathbb R^n\text{ satisfying the constraints,}\quad f_0(x^*)\le f_0(z).
 \end{equation*}
+\end{Definition}
 
 \nextsubchapter{Classes of optimization problems}
 

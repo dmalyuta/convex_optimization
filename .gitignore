@@ -9,3 +9,6 @@
 
 # ...even if they are in subdirectories
 !*/
+
+#ignore base directory PDF files
+/*.pdf
