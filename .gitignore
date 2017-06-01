@@ -10,5 +10,6 @@
 # ...even if they are in subdirectories
 !*/
 
-#ignore base directory PDF files
+#ignore these files, though, specifically
 /*.pdf
+/_region_.tex

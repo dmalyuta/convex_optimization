@@ -21,8 +21,6 @@ where:
 \item $b_1,...,b_m$ are the limits (bounds) for the constraints.
 \end{itemize}
 
-\end{Definition}
-
 \begin{Fact}
 You can understand (\ref{eq:optimization_problem}) as an abstraction of choosing a vector in $\Reals^n$ from a set of candidate choices. In this case, constraints $f_i(x)\le bi$ are ``requirements'' or ``specifications'' while $f_0(x)$ is the cost of choosing $x$.
 
@@ -46,44 +44,6 @@ Optimization problems are bundled into classes based on the form of their object
 \begin{Fact}
   Note: in optimization jargon, a "program" is an alias for an "optimization problem".
 \end{Fact}
-
-\smalltitle{Linear program}
-
-\begin{Definition}
-  (\ref{eq:opt_problem}) is a \textbf{linear program} if $f_0,...,f_m$ are linear functions (i.e. both objective and constraints).
-\end{Definition}
-
-\begin{Definition}
-  Recall that:
-  $$
-  f(x):\mathbb R^n\to\mathbb R\text{ is linear}\Leftrightarrow \forall x,y\in\mathbb R^n,\,\,\forall\alpha\in\mathbb \,\,\, f(\alpha x+\beta y)=\alpha f(x)+\beta f(y).
-  $$
-\end{Definition}
-
-\smalltitle{Nonlinear program}
-
-An optimization problem is nonlinear if it is not linear. Of course, there are many classes of nonlinear programs. A general nonlinear program can be applied to basically any optimization problem, however:
-
-\begin{itemize}
-\item It may take a very long time to solve;
-\item It may not find the (global) solution;
-\item It may be very difficult to solve!
-\end{itemize}
-
-\smalltitle{Convex program}
-
-...and convex optimization is one of them!
-
-\begin{Definition}
-  A \textbf{convex optimization problem} is one in which $f_0,\ldots,f_m$ are convex:
-  $f(x):\mathbb R^n\to\mathbb R$ is convex if and only if $$
-  \forall x,y\in\mathbb R^n, \forall \alpha,\beta\in\mathbb R_{+}\text{ s.t. }\alpha+\beta=1\quad\Rightarrow\quad f(\alpha x+\beta y)\le \alpha f(x)+\beta f(y).
-  $$
-\end{Definition}
-
-Unlike general nonlinear programs, convex (and linear) programs can be solved \textit{efficiently} and \textit{reliably}, making them ideally suited for real world (and even high stakes) applications!
-
-In fact, a convex program is a common parent of two well know, reliable and efficient optimization classes: least squares and linear programs.
 
 \smalltitle{Least-Squares Problems}
 
@@ -148,18 +108,29 @@ Applications to least-squares programming include:
   \end{Example}
 \end{Fact}
 
-\smalltitle{Linear Programming}
+\smalltitle{Linear program}
 
 \begin{Definition}
+  (\ref{eq:opt_problem}) is a \textbf{linear program} if $f_0,...,f_m$ are linear functions (i.e. both objective and constraints).
+\end{Definition}
+
+\begin{Definition}
+  Recall that:
   $$
+  f(x):\mathbb R^n\to\mathbb R\text{ is linear}\Leftrightarrow \forall x,y\in\mathbb R^n,\,\,\forall\alpha\in\mathbb \,\,\, f(\alpha x+\beta y)=\alpha f(x)+\beta f(y).
+  $$
+\end{Definition}
+
+\textit{Linear programming}, or \textit{linear optimization}, is the act of solving a linear program. A linear program may be more specifically formulated as:
+
+\begin{equation*}
   \begin{array}{rl}
     \text{minimize} & c^Tx \\
     \text{subject to} & a_i^Tx\le b_i,\quad i=1,\ldots,m
   \end{array}
-  $$
-\end{Definition}
+\end{equation*}
 
-Linear programming is, like least squares, a mature technology. Existing algorithms are (almost) as reliable as least squares.
+No simple analytical formula exists for the solution of a linear program! However, like for least squares, very reliably and effective methods exist to solve this type of problem. Like least squares, linear programming is a \textit{mature technology}. Existing algorithms are (almost) as reliable as least squares.
 
 \begin{Fact}
   Some linear programming properties:
@@ -175,13 +146,73 @@ Linear programming is, like least squares, a mature technology. Existing algorit
   \end{itemize}
 \end{Fact}
 
+Unlike least squares problems, which are readily recognized by asking oneself the ``is the objective function the 2-norm of an affine function'' question, recognizing linear programs is more involved (i.e. it requires more skill from the engineer). However, it is a skill that is readily acquired since only a few standard tricks are involved (see \TODOREF).
 
+\smalltitle{Convex program}
 
+\begin{Definition}
+  A \textbf{convex optimization problem} is one in which $f_0,\ldots,f_m$ are convex functions.
+\end{Definition}
 
+\begin{Definition}
+  Function $f(x):\mathbb R^n\to\mathbb R$ is convex $\Leftrightarrow$
+  \begin{equation*}
+    \forall x,y\in\mathbb R^n, \forall \alpha,\beta\in\mathbb R_+\text{ s.t. }\alpha+\beta=1\quad\Rightarrow\quad f(\alpha x+\beta y)\le \alpha f(x)+\beta f(y).
+  \end{equation*}
+\end{Definition}
 
+Unlike general nonlinear programs, efficient and reliable algorithms exist for solving convex programs (though perhaps not as reliable as linear or least squares programs - but almost as reliable). Given also their wide applicability to real world problems, this makes convex optimization ideally suited for real world (and even high stakes) applications!
 
+\begin{Fact}
+  Linear and least squares programs are a subset of convex programs. In turn, convex programs are a subset of nonlinear programs.
+\end{Fact}
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "document"
-%%% End:
+\begin{Fact}
+  Interior point methods can solve convex problem (\ref{eq:opt_problem}) in almost always 10 to 100 iterations. Ignoring any problem structure (e.g. sparsity), each iteration requires on the order of $\{n^3, n^2m, F\}$ operations where $F$ is the cost of evaluating the first and seconds derivatives of $f_0,...,f_m$.
+\end{Fact}
+
+Recognizing a convex function \textbf{can be difficult}. There are many more tricks involved than for linear programming! Thus, recognizing that a problem is a convex optimization problem, or that it can be cast into one, can be challenging.
+
+\begin{Fact}
+  The main goal of this document is to learn to recognize and formulate convex optimization problems! This is an essential skill because the challenge and the art of using convex optimization is in recognizing and formulating the problem - because solving it is (almost) a mature technology.
+\end{Fact}
+
+\smalltitle{Nonlinear program}
+
+\begin{Definition}
+  \textbf{Nonlinear optimization} (or \textbf{nonlinear programming}) describes optimization problems where $f_0,...,f_m$ are not linear, but are also no tknow to be convex.
+\end{Definition}
+
+Nonlinear optimization can be applied to basically any optimization problem, however:
+
+\begin{itemize}
+\item It may take a very long time to solve;
+\item It may not find the (globally optimal) solution - i.e. you may find $\bar x$ s.t. $f(\bar x) > f(x^*)$, and will never know of the $x^*$ ``out there'';
+\item It may be very difficult to solve!
+\end{itemize}
+
+\begin{Example}
+  \textbf{Local optimization}. This approach gives up finding the solution $x^*$ and resorts to finding a locally optimal solution, which minimizes $f_0(x)$ among feasible points near an initial value $x_0$.
+  \begin{itemize}
+  \item Local optimization can be fast and can handle large-scale problems and requires only that $f_0,...,f_m$ are differentiabile;
+  \item Local optimization is valuable in fields where there is value in finding a good $x$, if not the best one. Example: engineering design, where $x_0$ is the manual initial design;
+  \item It requires setting an initial point, and the solution it finds can greatly vary with the $x_0$ that you choose! Not good for autonomous applications...
+  \end{itemize}
+
+  Roughly speaking, \textit{local optimization is more art (although well developed art) than technology}.
+\end{Example}
+
+\begin{Example}
+  \textbf{Global optimization}. This approach aims to find the true solution $x^*$, however compromises efficiency. Worst-case complexity: exponential growth with $n$ (size of optimization variable) and $m$ (number of constraints).
+
+  \begin{Fact}
+    Think: ``curse of dimensionality'' for dynamic programming, which tries to find the globally optimal policy but which in pratice cannot be applied to control problems with much more than 5 state variables!
+  \end{Fact}
+
+  Global optimization methods are applied in domains where computing time is not critical and the value of finding the true global solution is very high, such as \textit{worst-case analysis} or \textit{verification} of high value/safety critical systems.
+
+  \begin{Fact}
+    Almost every method for global optimization is based on convex optimization as a subroutine.
+  \end{Fact}
+  
+\end{Example}
