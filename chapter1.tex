@@ -1,5 +1,5 @@
 
-\nextchapter{Introduction to Optimizations}
+\nextchapter{Introduction to Optimization}
 
 \nextsubchapter{Definition of an optimization problem}
 
@@ -210,9 +210,20 @@ Nonlinear optimization can be applied to basically any optimization problem, how
   \end{Fact}
 
   Global optimization methods are applied in domains where computing time is not critical and the value of finding the true global solution is very high, such as \textit{worst-case analysis} or \textit{verification} of high value/safety critical systems.
-
-  \begin{Fact}
-    Almost every method for global optimization is based on convex optimization as a subroutine.
-  \end{Fact}
   
 \end{Example}
+
+\begin{Fact}
+  Almost every method for global optimization is based on convex optimization as a subroutine. Convex optimization is found nonlinear optimization in the following applications:
+  \begin{itemize}
+  \item Initialization for location optimization (by solving a convex approximation of the true nonlinear problem and using the solution as the initial point for the local optimization routine)
+  \item Convex heuristics for nonlinear optimization
+  \item Finding sampling probability distribution parameters for \textit{randomized algorithms} that minimizes expected value of $f_0$
+  \item Finding bounds for global optimization (via \textit{relaxation} and \textit{Lagrangian relaxation})
+  \end{itemize}
+\end{Fact}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
