@@ -1,0 +1,251 @@
+
+\nextchapter{Convex Sets}
+
+\nextsubchapter{Affine Sets}
+
+\begin{Definition}
+  Let $x_1\ne x_2$ be two points in $\Reals^n$. A \textbf{line} between $x_1$
+  and $x_2$ is defined by a set of points of the form
+  \begin{equation}
+    \label{eq:line_definition}
+    y = \theta x_1+(1-\theta)x_2
+  \end{equation}
+  where $\theta\in\Reals$.
+  
+  \newfigure{0.6}{line.pdf}{Line between $x_1$ and $x_2$.}{line}
+  
+  $x_2$ is the line's \textbf{base} and $x_1-x_2$ is the line's
+  \textbf{direction}. The values of $y$ for $\theta\in [0,1]$ correspond to the
+  (closed) \textbf{line segment} between $x_1$ and $x_2$.  
+\end{Definition}
+
+\begin{Definition}
+  A set $C\subseteq \Reals^n$ is \textbf{affine} if $\forall x_1,x_2\in C$,
+  $x_1\ne x_2$, the line between $x_1$ and $x_2$ lies in $C$.
+\end{Definition}
+
+\begin{Definition}
+  As a generalization of \eqref{eq:line_definition}, a point of the form
+  \begin{equation}
+    \label{eq:2}
+    \sum_{i=1}^k \theta_ix_i\quad\text{ s.t. }\quad \sum_{i=1}^k\theta_i=1
+  \end{equation}
+  is an \textbf{affine combination} of points $x_1,...,x_k$. 
+\end{Definition}
+
+\begin{Fact}
+  An affine set $C$ contains every affine combination of its points:
+  \begin{equation*}
+    \forall x_1,...,x_k\in C,\,\,\forall \theta_1,...,\theta_k\in\Reals\text{
+      s.t. }\sum_{i=1}^k\theta_i=1\Rightarrow \sum_{i=1}^k\theta_ix_i \in C
+  \end{equation*}
+  
+\end{Fact}
+
+\begin{Proof}
+  By induction: the basic case $k=2$ follows from the definition of an affine
+  set. Assume true for $k$, then for $k+1$ note that:
+  \begin{equation*}
+    \sum_{i=1}^k\theta_i = 1-\theta_{k+1}\Rightarrow
+    \sum_{i=1}^k\frac{\theta_i}{1-\theta_{k+1}} = 1
+  \end{equation*}
+  where we choose $\theta_{k+1}\ne 1$ (without loss of generality, since at
+  least one of the $\theta$'s must be not equal to 1). Then:
+  \begin{equation*}
+    \begin{array}{rcl}
+      \sum_{i=1}^{k+1}\theta_ix_i & = &
+                                        \sum_{i=1}^{k}\theta_ix_i+\theta_{k+1}x_{k+1}
+      \\
+                                  & = &
+                                        (1-\theta_{k+1})\sum_{i=1}^k\frac{\theta_i}{1-\theta_{k+1}}x_i+\theta_{k+1}x_{k+1}
+      \\
+                                  & = & (1-\theta_{k+1})y+\theta_{k+1}x_{k+1} \in C
+    \end{array}
+  \end{equation*}
+  where the last equality follows from the induction hypothesis and the
+  inclusion in $C$ follows from the basic definition of an affine set, since $y,
+  x_{k+1}\in C$. \QED
+\end{Proof}
+
+\begin{Fact}
+  Let $C$ be an affine set and $x_0\in C$. Then the set
+  \begin{equation*}
+    V = C-x_0 = \{ x-x_0 \mid x\inC \}
+  \end{equation*}
+  is a subspace, i.e. it is closed under vector addition, scalar multiplication
+  and contains the zero element ($0\in V$).
+
+  Thus, an affine set $C$ can be written as
+  \begin{equation*}
+    C = V+x_0 = \{v+x_0 \mid v\in V\}
+  \end{equation*}
+  i.e. a subspace plus an \textit{offset} (any point in $C$, with $V$
+  independent of it).
+\end{Fact}
+
+\begin{Definition}
+  The \textbf{dimension} of an affine set is the dimensions of the subspace
+  $V=C-x_0$ where $x_0$ is any element in $C$.
+\end{Definition}
+
+\begin{Fact}
+  The set of solutions to a linear system, $C = \{x \mid Ax=b\}$ where
+  $A\in\Reals^{m\times n}$ and $b\in\Reals^m$, is an affine set.
+
+  The subspace associated with $C$ is in this case the nullspace of $A$
+
+  \begin{Proof}
+    $x_0\in C\Rightarrow Ax_0=b$. $V=\{x-x_0 \mid x\in C\}\Rightarrow Av = A(x-x_0) =
+    Ax-Ax_0=b-b=0$, therefore $\forall v\in V\Rightarrow Av = 0$ for $V$ is the
+    nullspace of $A$.
+  \end{Proof}
+\end{Fact}
+
+\begin{Definition}
+  The \textbf{affine hull} of some set $S\subseteq \Reals^n$ is the set of all
+  affine combinations of its points:
+  \begin{equation*}
+    \aff{S} = \Bigl\{\sum_{i=1}^k\theta_ix_i \, \mid \, x_1,...,x_k\in S,\,\,\sum_{i=1}^k\theta_i=1\Bigr\}
+  \end{equation*}
+\end{Definition}
+
+\begin{Definition}
+  The \textbf{affine dimension} of a set $S$ is the dimensions of its affine
+  hull.
+\end{Definition}
+
+\begin{Example}
+  Consider the unit circle in $\Reals^2$, $S = \{x\in\Reals^2 \mid x_1^2+x_2^2 =
+  1\}$. We have $\aff{S} = 2$ and the affine dimension is 2.
+
+  \begin{Fact}
+    By most definitions of dimension, a unit circle in $\Reals^2$ has
+    dimension one.
+  \end{Fact}
+\end{Example}
+
+\begin{Fact}
+  If the affine dimension of a set $C\subseteq \Reals^n$ is less than $n$, then
+  $C\subseteq \aff{C}\ne\Reals^n$.
+\end{Fact}
+
+\begin{Definition}
+  The \textbf{relative interior} of a set $C$, $\relint{C}$, is its interior
+  relative of $\aff{C}$:
+  \begin{equation*}
+    \relint{C} = \{
+    x\in C \mid B(x,r)\intersection\aff{C}\subseteq C\text{ for some }r>0
+    \}
+  \end{equation*}
+  where $B(x,r) = \{y \mid \fnorm{y-x}{}\le r\}$, the closed ball of radius $r$ and
+  center $x$ in some norm $\fnorm{\cdot}{}$.
+\end{Definition}
+
+\begin{Fact}
+  All norms define the same relative interior.
+\end{Fact}
+
+\begin{Definition}
+  The \textbf{relative boundary} of set $C$ is $\cl{C} \setminus \relint{C}$
+  where $\cl{C}$ is the \href{https://en.wikipedia.org/wiki/Closure_(mathematics)}{closure} of $C$.
+\end{Definition}
+
+\begin{Fact}
+  The closure of a set $C$ is the set of limits of all sequences in $C$. It can
+  be roughly tough of as the ``points on the edge of $C$''.
+\end{Fact}
+
+\nextsubchapter{Convex Sets}
+
+\begin{Definition}
+  A set $C$ is \textbf{convex} if the line segment between any two points in $C$
+  lies in $C$, i.e.
+  \begin{equation}
+    \label{eq:convex_set_definition}
+    \forall x_1, x_2\in C,\,\,\forall \theta\in [0,1]\Rightarrow\theta
+    x_1+(1-\theta)x_2\in C.
+  \end{equation}
+\end{Definition}
+
+You can imagine it roughly like this: a set is convex if every point can see
+every other points with a direct, unobstructed line of sight.
+
+\newfigure{0.7}{convex_set_examples.pdf}{Some simple convex and nonconvex sets.}{convex_set_examples}
+
+\begin{Fact}
+  Every affine set is also convex. 
+\end{Fact}
+
+\begin{Definition}
+  A point of the form
+  \begin{equation*}
+    \sum_{i=1}^k\theta_ix_i\quad\text{ s.t. }\quad\sum_{i=1}^k\theta_i =
+    1,\,\,\theta_i\ge 0\,\,\forall i
+  \end{equation*}
+  a \textbf{convex combination} of the points $x_1,...,x_k$. It can be imagined
+  as a \textit{mixture} of \textit{weighted average} of the points, with
+  $\theta_i$ the fraction of $x_i$ in the mixture ($\theta_i$ closer to 1
+  indicating a strong presenc of $x_i$ in the mixture).
+\end{Definition}
+\begin{Fact}
+  A convex set $C$ contains every convex combination of its points:
+  \begin{equation*}
+    \forall x_1,...,x_k\in C,\,\,\forall \theta_1,...,\theta_k\in\Reals_+\text{
+      s.t. }\sum_{i=1}^k\theta_i=1\Rightarrow \sum_{i=1}^k\theta_ix_i \in C
+  \end{equation*}
+\end{Fact}
+
+\begin{Definition}
+  A \textbf{convex hull} of a set $C$, $\conv{C}$, is the set of all convex
+  combinations of points of C:
+  \begin{equation*}
+    \conv{C} = \Bigl\{
+    \sum_{i=1}^k\theta_ix_i \mid x_i\in C,\,\,\theta_i\ge 0,\,\,
+    i=1,...,k,\,\,\sum_{i=1}^k\theta_i = 1
+    \Bigr\}
+  \end{equation*}
+\end{Definition}
+
+\begin{Fact}
+  A convex hull is always convex. It is the \textit{smallest} convex set that
+  contains $C$, i.e.\
+  \begin{eqnarray*}
+    \forall B\text{ convex set containing }C,\,\,\conv{C}\subseteq B.
+  \end{eqnarray*}
+\end{Fact}
+
+\begin{Fact}
+  \textbf{Extensions}. Let $C$ be a convex set.
+  \begin{itemize}
+  \item \underline{Infinite sums}: let $\theta_i\ge 0$, $i=1,2,...$,
+    $\sum_{i=1}^\infty \theta_i = 1$ and $x_1,x_2,...\in C$. Then
+    \begin{equation*}
+      \sum_{i=1}^\infty \theta_ix_i\in C,
+    \end{equation*}
+    assuming the series converges.
+  \item \underline{Integrals}: suppose $p:\Reals^n\to\Reals$ satisfies
+    $p(x)\ge 0$ $\forall x\in C$ and $\int_Cp(x)dx=1$. Then
+    \begin{equation*}
+      \int_C p(x)dx\in C,
+    \end{equation*}
+    if the integral exists.
+  \item \underline{Probability distributions}: suppose $x$ is a random vector
+    with $x\in C$ with probability one. Then, $\Expectation x\in C$ (due to $C$
+    being convex).
+
+    \begin{Fact}
+      {\color{red} This is the most generation form and includes all of the above}.
+    \end{Fact}
+
+    \begin{Example}
+      Suppose $x$ is discrete and $\Prob(x=x_1)=\theta$, $\Prob(x=x_2)=1-\theta$
+      where $\theta\in[0,1]$. Then, $\Expectation x=\theta x_1+(1-\theta)x_2\in
+      C$, which is \eqref{eq:convex_set_definition}.
+    \end{Example}
+  \end{itemize}
+\end{Fact}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "document"
+%%% End:

@@ -1,5 +1,9 @@
 \newcommand*{\QED}{\ensuremath{\blacksquare}}
 \newcommand{\union}{\cup}
+\newcommand{\aff}[1]{\textbf{aff }#1}
+\newcommand{\relint}[1]{\textbf{relint }#1}
+\newcommand{\cl}[1]{\textbf{cl }#1}
+\newcommand{\conv}[1]{\textbf{conv }#1}
 \newcommand{\intersection}{\cap}
 \newcommand{\overeq}[1]{\stackrel{\mathclap{\tiny{\substack{#1}}}}{=}}
 \newcommand{\overto}[1]{\stackrel{\mathclap{\tiny{\substack{#1}}}}{\to}}
@@ -33,9 +37,9 @@
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \newcommand{\basis}[3]{\{#1_{#2}\}_{#2=1}^{#3}}
 \newcommand{\sequence}[3]{\{#1_{#2}\}_{#2=0}^{#3}}
-\newcommand{\Naturals}{\mathbb N}
-\newcommand{\Reals}{\mathbb R}
-\newcommand{\Complex}{\mathbb C}
+\newcommand{\Naturals}{\textbf{N}}
+\newcommand{\Reals}{\textbf{R}}
+\newcommand{\Complex}{\textbf{C}}
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\then}{\Rightarrow}
@@ -50,10 +54,10 @@
 \newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
 \newcommand{\InnerProd}[2]{\langle#1,#2\rangle}
 \newcommand{\scaleval}{0.8}
-\newcommand{\Expectation}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\Expectation}[1]{\textbf{E}}
 \newcommand{\Variance}[1]{\text{Var}[#1]}
 \newcommand{\Cov}[2]{\text{Cov}[#1,#2]}
-\newcommand{\Prob}{\mathbb P}
+\newcommand{\Prob}{\textbf{prob}}
 \newcommand{\ord}[1]{^{\left(#1\right)}}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
@@ -105,6 +109,7 @@ Properties:
 \caption{#3}
 \label{#4}
 \end{figure}
+\vspace{0}
 }
 
 \newcommand{\newfigureNocaption}[2]{
