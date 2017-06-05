@@ -89,8 +89,14 @@
 \end{Definition}
 
 \begin{Fact}
-  The set of solutions to a linear system, $C = \{x \mid Ax=b\}$ where
-  $A\in\Reals^{m\times n}$ and $b\in\Reals^m$, is an affine set.
+  The set of solutions to a linear system,
+
+  \begin{equation}
+    \label{eq:linear_system_affine}
+    C = \{x \mid Ax=b\}
+  \end{equation}
+  
+  where $A\in\Reals^{m\times n}$ and $b\in\Reals^m$, is an affine set.
 
   The subspace associated with $C$ is in this case the nullspace of $A$
 
@@ -182,9 +188,9 @@ every other points with a direct, unobstructed line of sight.
     \sum_{i=1}^k\theta_ix_i\quad\text{ s.t. }\quad\sum_{i=1}^k\theta_i =
     1,\,\,\theta_i\ge 0\,\,\forall i
   \end{equation*}
-  a \textbf{convex combination} of the points $x_1,...,x_k$. It can be imagined
-  as a \textit{mixture} of \textit{weighted average} of the points, with
-  $\theta_i$ the fraction of $x_i$ in the mixture ($\theta_i$ closer to 1
+  is called a \textbf{convex combination} of the points $x_1,...,x_k$. It can be
+  imagined as a \textit{mixture} of \textit{weighted average} of the points,
+  with $\theta_i$ the fraction of $x_i$ in the mixture ($\theta_i$ closer to 1
   indicating a strong presenc of $x_i$ in the mixture).
 \end{Definition}
 \begin{Fact}
@@ -204,6 +210,7 @@ every other points with a direct, unobstructed line of sight.
     i=1,...,k,\,\,\sum_{i=1}^k\theta_i = 1
     \Bigr\}
   \end{equation*}
+  \newfigure{0.6}{convex_hull.pdf}{The convex hull of two example sets.}{convex_hull}
 \end{Definition}
 
 \begin{Fact}
@@ -219,22 +226,24 @@ every other points with a direct, unobstructed line of sight.
   \begin{itemize}
   \item \underline{Infinite sums}: let $\theta_i\ge 0$, $i=1,2,...$,
     $\sum_{i=1}^\infty \theta_i = 1$ and $x_1,x_2,...\in C$. Then
-    \begin{equation*}
+    \begin{equation}
+      \label{eq:convex_combination_infinite_sum}
       \sum_{i=1}^\infty \theta_ix_i\in C,
-    \end{equation*}
+    \end{equation}
     assuming the series converges.
   \item \underline{Integrals}: suppose $p:\Reals^n\to\Reals$ satisfies
     $p(x)\ge 0$ $\forall x\in C$ and $\int_Cp(x)dx=1$. Then
-    \begin{equation*}
+    \begin{equation}
+      \label{eq:convex_combination_integral}
       \int_C p(x)dx\in C,
-    \end{equation*}
+    \end{equation}
     if the integral exists.
   \item \underline{Probability distributions}: suppose $x$ is a random vector
     with $x\in C$ with probability one. Then, $\Expectation x\in C$ (due to $C$
     being convex).
 
     \begin{Fact}
-      {\color{red} This is the most generation form and includes all of the above}.
+      {\color{red} This is the most general form and includes all of the above}.
     \end{Fact}
 
     \begin{Example}
@@ -244,6 +253,186 @@ every other points with a direct, unobstructed line of sight.
     \end{Example}
   \end{itemize}
 \end{Fact}
+
+\nextsubchapter{Cones}
+
+\begin{Definition}
+  A set $C$ is called a \textbf{cone} if $\forall x\in C$ and $\theta\ge 0$
+  $\Rightarrow \theta x\in C$.
+\end{Definition}
+
+\begin{Definition}
+  A set $C$ is called a \textbf{convex cone} if it is convex and a cone, i.e.
+  \begin{equation*}
+    \forall x_1,x_2\in C\text{ and }\forall\theta_1,\theta_2\ge 0\Rightarrow
+    \theta_1x_1+\theta_2x_2\in C
+  \end{equation*}
+  \newfigure{0.5}{cone.pdf}{In 2D, the convex cone looks like a pie slice. Note
+    that the cone's apex is at $0$, corresponding to $\theta_1=\theta_2=0$.}{cone}
+\end{Definition}
+
+\begin{Definition}
+  A point of the form
+  \begin{equation*}
+    \sum_{i=1}^k\theta_ix_i\quad\text{ s.t. }\quad\theta_i\ge 0\,\,\forall i
+  \end{equation*}
+  is called a \textbf{conic combination} of $x_1,...,x_k$.
+\end{Definition}
+
+\begin{Fact}
+  A convex cone $C$ contains every conic combination of its points:
+  \begin{equation*}
+    \forall x_1,...,x_k\in C,\,\,\forall
+    \theta_1,...,\theta_l\in\Reals_+\Rightarrow\sum_{i=1}^k\theta_ix_i\in C.
+  \end{equation*}
+\end{Fact}
+
+\begin{Fact}
+  The idea of conic combinations call also be extended to infinite sums and
+  integrals, similarly to (\ref{eq:convex_combination_infinite_sum},
+  \ref{eq:convex_combination_integral}).
+\end{Fact}
+
+\begin{Definition}
+  A \textbf{conic hull} of a set $C$ is the set of all conic combinations of its
+  points,
+  \begin{equation*}
+    \Bigl\{\sum_{i=1}^k\theta_ix_i \mid x_i\in C,\,\,\theta_i\ge 0,\,\,i=1,...,k\Bigr\}.
+  \end{equation*}
+  \newfigure{0.6}{conic_hull.pdf}{The conic hulls (in light gray) of the same
+    two sets as in Figure \ref{fig:convex_hull}.}{conic_hull}
+\end{Definition}
+
+\begin{Fact}
+  The conic hull of set $C$ is the smallest convex cone that contains $C$. 
+\end{Fact}
+
+\nextsubchapter{Important examples}
+
+This section presents important examples of \underline{convex} sets.
+
+\nextsubsubchapter{Simple examples}
+
+\begin{itemize}
+\item The empty set $\emptyset$, any single point (i.e. \textbf{singleton})
+  $\{x_0\}$, the whole space $\Reals^n$ are affine (hence, convex) subsets of
+  $\Reals^n$.
+\item Any line is affine, hence convex. If it passes through zero, it is a
+  subspace, hence also a convex cone.
+\item A line segment is convex, but not affine (unless it is a zero-length
+  segment, i.e. the line's endpoints coincide).
+\end{itemize}
+
+\begin{Definition}
+  A \textbf{ray} is the set $\{x_0+\theta v \mid \theta\ge 0\}$, where $v\ne
+  0$. It looks like a line which extends to infinity only on one of its ends.
+\end{Definition}
+
+\begin{itemize}
+\item A ray is convex, but not affine. If $x_0=0$ (in the above definition of a
+  ray), then it is a convex cone.
+\end{itemize}
+
+\nextsubsubchapter{Hyperplanes and Halfspaces}
+
+\begin{Definition}
+  A \textbf{hyperplane} is a set of the form
+  \begin{equation*}
+    \{ x \mid a^Tx=b \}
+  \end{equation*}
+  where $a\in\Reals^n$, $a\ne 0$ and $b\in\Reals$.
+
+  \begin{itemize}
+  \item Analytically, a hyperplane is the solution to a nontrivial linear
+    system.
+  \item Geometrically, it is a set of vectors with a constant inner product
+    ($b$) to a vector $a$. In 2D, this corresponds to a line. In 3D, this
+    corresponds to a plane. In both 2D and 3D, $a$ is the ``normal'' to the line
+    and to the plane. $b$ determines the offset of the hyperplane from the
+    origin along vector $a$.
+  \end{itemize}
+\end{Definition}
+
+\begin{Fact}
+  Recalling (\ref{eq:linear_system_affine}), we conclude that a hyperplane is
+  affine (where $A=a^T$).
+\end{Fact}
+
+Other forms that a hyperplane can be written in:
+
+\begin{itemize}
+\item $\{ x \mid a^T(x-x_0)=0 \}$, where $x_0$ is any point in the hyperplane
+  s.t. $a^Tx_0=b$.
+\item $\Rightarrow x_0+a^\perp$, i.e. the hyperplane consists of an offset $x_0$
+  plus all vectors orthogonal to the (normal) vector $a$.
+  \begin{Definition}
+    $a^\perp=\{v \mid a^Tv=0\}$ is the \textbf{orthogonal
+      complement} of $a$, i.e. the set of all vectors orthogonal to it.
+  \end{Definition}
+\end{itemize}
+
+\begin{Definition}
+  A (closed) \textbf{halfspace} is a set of the form
+  \begin{equation*}
+    \{ x \mid a^Tx \le b \},
+  \end{equation*}
+  where $a\ne 0$. A halfspace is thus a solution to one (nontrivial) linear
+  inequality.
+
+  \newfigure{0.5}{halfspace.pdf}{Illustration of a halfspace
+    $\{x \mid a^Tx\le b\}$ (with outward normal $a$) and a halfspace
+    $\{x \mid a^Tx \ge b\}$ (with outward normal $-a$), generated by the
+    hyperplane $\{x | a^Tx = b\}$.}{halfspace}
+\end{Definition}
+
+\begin{Fact}
+  A hyperplane divides $\Reals^n$ into two halfspaces, as shown in Figure \ref{fig:halfspace}.
+\end{Fact}
+
+\begin{Fact}
+  A halfspace is convex, but not affine.
+\end{Fact}
+
+Other forms that a halfspace can be written in:
+
+\begin{itemize}
+\item $\{ x \mid a^T(x-x_0)\le 0 \}$, where $x_0$ is s.t. $a^Tx_0=b$ (i.e. it
+  \textit{lies on} the hyperplane).
+
+  \newfigure{0.5}{halfspace_interpretation_above_below.pdf}{Points belonging to
+    the halfspace $\{x\mid a^Tx\le b\}$ form an obtuse angle with $a$, in other
+    words a negative inner product $a^T(x_2-x_0)\le 0$. A similar interpretation
+  for $\{x \mid a^Tx\ge b\}$.}{halfspace_interpretation_above_below}
+\end{itemize}
+
+\begin{Definition}
+  The set $\{x \mid a^Tx<b \}$, which is the interior of $\{x \mid a^Tx\le b
+  \}$, is called an \textbf{open halfspace}.
+\end{Definition}
+
+\nextsubsubchapter{Euclidean balls and Ellipsoids}
+
+\begin{Definition}
+  A (\textbf{Euclidean}) \textbf{ball} in $\Reals^n$ has the form
+  \begin{equation*}
+    B(x_c, r) = \{ x \mid \fnorm{x-x_c}{2}\le r\} = \{x \mid (x-x_c)^T(x-x_c)\le r^2,
+  \end{equation*}
+  where $r> 0$ and $\fnorm{\cdot}{2}$ is the Euclidean norm
+  (i.e. $\fnorm{u}{2}=(u^Tu)^{1/2}$). $x_c$ is the ball \textbf{center} while
+  $r$ is the ball \textbf{radius}.
+\end{Definition}
+
+\begin{Fact}
+  A Euclidean ball can also be written in a constrained-parameter representation,
+  \begin{equation*}
+    B(x_c, r) = \{x_c+ru \mid \fnorm{u}{2}\le 1 \}.
+  \end{equation*}
+\end{Fact}
+
+\begin{Fact}
+  A Euclidean ball is convex.
+\end{Fact}
+
 
 %%% Local Variables:
 %%% mode: latex
